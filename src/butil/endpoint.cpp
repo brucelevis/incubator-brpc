@@ -174,7 +174,7 @@ const char* my_hostname() {
 
 int str2endpoint(const char* str, EndPoint* point) {
     // Should be enough to hold ip address
-    char buf[64];
+    char buf[1024];
     size_t i = 0;
     for (; i < sizeof(buf) && str[i] != '\0' && str[i] != ':'; ++i) {
         buf[i] = str[i];
@@ -216,7 +216,7 @@ int str2endpoint(const char* ip_str, int port, EndPoint* point) {
 
 int hostname2endpoint(const char* str, EndPoint* point) {
     // Should be enough to hold ip address
-    char buf[64];
+    char buf[1024];
     size_t i = 0;
     for (; i < sizeof(buf) - 1 && str[i] != '\0' && str[i] != ':'; ++i) {
         buf[i] = str[i];
