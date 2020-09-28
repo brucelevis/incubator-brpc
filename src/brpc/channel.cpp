@@ -140,6 +140,21 @@ Channel::~Channel() {
     }
 }
 
+void Channel::reset() {
+    if (_server_id != INVALID_SOCKET_ID) {
+        const ChannelSignature sig = ComputeChannelSignature(_options);
+        SocketMapRemove(SocketMapKey(_server_address, sig));
+    }
+
+    _server_id          = INVALID_SOCKET_ID;
+    _serialize_request  = NULL;
+    _pack_request       = NULL;
+    _get_method_name    = NULL;
+    _preferred_index    = -1;
+
+    _lb.reset();
+}
+
 int Channel::InitChannelOptions(const ChannelOptions* options) {
     if (options) {  // Override default options if user provided one.
         _options = *options;
