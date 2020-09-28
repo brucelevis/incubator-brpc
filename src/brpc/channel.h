@@ -151,6 +151,8 @@ public:
     Channel(ProfilerLinker = ProfilerLinker());
     ~Channel();
 
+    void reset();
+
     // Connect this channel to a single server whose address is given by the
     // first parameter. Use default options if `options' is NULL.
     int Init(butil::EndPoint server_addr_and_port, const ChannelOptions* options);
